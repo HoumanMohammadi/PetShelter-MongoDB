@@ -36,6 +36,14 @@ public class PetController {
         }else return petService.getPetWhenNameBeginsWith(name);
     }
 
+    @GetMapping("/owner/searchbyowner")
+    public List<Pet> searchPetByOwner(@RequestParam(required = false) String ownerId, @RequestParam(required = false) String ownerName){
+        if (ownerId!=null){
+            return petService.getPetByOwnerId(ownerId);
+        } else return petService.getPetByOwnerName(ownerName);
+    }
+
+
 
     @PostMapping
     public Pet addPet(@RequestBody Pet petToAdd){

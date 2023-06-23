@@ -37,6 +37,13 @@ public class PetService {
     public List<Pet> getPetWhenNameBeginsWith (String name){
         return petRepository.findAllByNameStartingWith(name);
     }
+    public List<Pet> getPetByOwnerId(String ownerId){
+        return petRepository.findPetsByOwnerId(ownerId);
+    }
+
+    public List<Pet> getPetByOwnerName(String ownerName){
+        return petRepository.findPetsByOwnerName(ownerName);
+    }
 
     public Pet createPet(Pet petToAdd){
         return petRepository.save(petToAdd);
