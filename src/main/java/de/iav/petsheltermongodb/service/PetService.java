@@ -6,6 +6,7 @@ import de.iav.petsheltermongodb.repository.PetRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,18 @@ public class PetService {
 
     public Optional<Pet> getPetById(String id){
         return petRepository.findById(id);
+    }
+
+    public List<Pet> getPetBySpecies(String species){
+        return petRepository.findAllBySpeciesEqualsIgnoreCase(species);
+    }
+
+    public List<Pet> getPetOlderThan(int age){
+        return petRepository.findAllByAgeAfter(age);
+    }
+
+    public List<Pet> getPetWhenNameBeginsWith (String name){
+        return petRepository.findAllByNameStartingWith(name);
     }
 
     public Pet createPet(Pet petToAdd){

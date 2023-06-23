@@ -26,6 +26,17 @@ public class PetController {
         return petService.getPetById(id);
     }
 
+    @GetMapping ("/search")
+    public List<Pet> searchPet(@RequestParam(required = false) String species,@RequestParam(defaultValue = "0") int age,@RequestParam(required = false) String name ){
+
+        if (species!=null){
+            return petService.getPetBySpecies(species);
+        }else if (age>0){
+            return petService.getPetOlderThan(age);
+        }else return petService.getPetWhenNameBeginsWith(name);
+    }
+
+
     @PostMapping
     public Pet addPet(@RequestBody Pet petToAdd){
         return petService.createPet(petToAdd);
